@@ -15,7 +15,6 @@
                   <th>เรื่อง</th>
                   <th>จาก</th>
                   <th>ความเร็ว</th>
-                  <th>ส่งเอกสารเมื่อวันที่</th>
                   <th>สร้างเอกสารเมื่อวันที่</th>
                 </tr>
               </thead>
@@ -24,11 +23,10 @@
                   <tr>
                     <td><%= doc.id %></td>
                     <td><%= doc.number %></td>
-                    <td><%= doc.title %></td>
+                    <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
                     <td><%= doc.department.short %> </td>
                     <td><%= doc.confidential.name %></td>
-                    <td>#</td>
-                    <td><%= doc.created_at %></td>
+                    <td><%= doc.created_at.strftime('%d-%m-%Y') %></td>
                   </tr>
                 <% end %>
               </tbody>
