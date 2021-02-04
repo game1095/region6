@@ -1,0 +1,46 @@
+<%= form_for @document do |doc| %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= doc.label :เลขที่เอกสาร , class: 'label-control'%>
+      <%= doc.text_field :number , class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= doc.label :หัวข้อ , class: 'label-control'%>
+      <%= doc.text_field :title , class:'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= doc.label :วันที่ , class: 'label-control'%>
+      <%= doc.text_field :number , class:'form-control' , value: Time.now.strftime('%Y-%m-%d') %>
+    </div>
+    <div class="form-group">
+      <%= doc.label :ความเร็ว , class:'label-control' %>
+      <%= doc.collection_select :confidential_id , Confidential.all , :id , :name , {prompt: 'โปรดระบุความเร็ว'}  , class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <%= doc.label :ส่วน , class:'label-control' %>
+      <%= doc.collection_select :department_id , Department.all , :id , :name , {prompt: 'โปรดระบุส่วน'}  , class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= doc.label :รายละเอียด , class: 'label-control'%>
+      <%= doc.text_area :details , class:'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <%= doc.label :หมายเหตุ , class: 'label-control'%>
+    <%= doc.text_area :remark , class:'form-control' %>
+  </div>
+</div>
+<br>
+<div class="form-group">
+    <%= doc.submit 'บันทึกผล' , class: 'btn btn-info btn-rounded btn-block' %>
+    <%= link_to 'ย้อนกลับ' ,  documents_path , class: 'btn btn-danger btn-rounded btn-block' %>
+</div>
+<% end %>

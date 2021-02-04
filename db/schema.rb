@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 2021_02_03_034022) do
     t.text "remark"
     t.bigint "confidential_id"
     t.bigint "user_id"
+    t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confidential_id"], name: "index_documents_on_confidential_id"
+    t.index ["department_id"], name: "index_documents_on_department_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -62,8 +64,10 @@ ActiveRecord::Schema.define(version: 2021_02_03_034022) do
     t.string "full_name"
     t.bigint "position_id"
     t.bigint "level_id"
+    t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["level_id"], name: "index_users_on_level_id"
     t.index ["position_id"], name: "index_users_on_position_id"
@@ -71,7 +75,9 @@ ActiveRecord::Schema.define(version: 2021_02_03_034022) do
   end
 
   add_foreign_key "documents", "confidentials"
+  add_foreign_key "documents", "departments"
   add_foreign_key "documents", "users"
+  add_foreign_key "users", "departments"
   add_foreign_key "users", "levels"
   add_foreign_key "users", "positions"
 end
