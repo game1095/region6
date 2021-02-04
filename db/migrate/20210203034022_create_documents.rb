@@ -1,7 +1,7 @@
 class CreateDocuments < ActiveRecord::Migration[5.2]
   def change
     create_table :documents do |t|
-      t.integer :number
+      t.string :number
       t.date :dated
       t.string :title
       t.string :details

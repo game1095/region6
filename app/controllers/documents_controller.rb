@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:create , :index , :edit]
   def index
     @documents = Document.where(department_id: current_user.department_id )
   end
@@ -14,6 +14,22 @@ class DocumentsController < ApplicationController
     if @document.save
       redirect_to documents_path
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def show
+    @document = Document.find(params[:id])
+  end
+
+  def destroy
+
   end
 
   private

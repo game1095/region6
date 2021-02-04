@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_023809) do
   end
 
   create_table "documents", force: :cascade do |t|
-    t.integer "number"
+    t.string "number"
     t.date "dated"
     t.string "title"
     t.string "details"
