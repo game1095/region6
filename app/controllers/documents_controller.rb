@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @documents = Document.all
+    @documents = Document.where(department_id: current_user.department_id )
   end
 
   def new
