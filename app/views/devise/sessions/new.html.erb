@@ -1,0 +1,31 @@
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <h2>เข้าสู่ระบบ</h2>
+
+        <p>สำนักงานไปรษณีย์เขต 6</p>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" , class:'form-control' %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "เข้าสู่ระบบ" , class: 'btn btn-primary' %>
+          </div>
+          <%# <%= render "devise/shared/links" %>
+        <% end %>
+        <p class="m-t"> <small>Developed by Megamind@Reg6 </small> </p>
+    </div>
+</div>

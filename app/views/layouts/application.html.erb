@@ -11,10 +11,36 @@
     <%= stylesheet_link_tag    'animate', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "bootstrap", "data-turbolinks-track" => true  %>
-
   </head>
 
-  <body class="landing-page" id= "page-top">
+  <body class="landing-page container" id="page-top" >
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                  <ul class="nav navbar-nav navbar-left">
+                      <li><%= link_to 'หน้าหลัก' , root_path , class: 'page-scroll' %></li>
+                  </ul>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if user_signed_in? %>
+                          <li><%= link_to 'จัดการเอกสาร' , documents_path , class: 'page-scroll' %></li>
+                          <li class="page-scroll"><%= link_to "ผู้ใช้งาน : "+current_user.full_name , class:'page-scroll' %></li>
+                          <li class="page-scroll"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+                        <% else %>
+                          <li><%= link_to 'เข้าสู่ระบบ' , new_user_session_path , class: 'page-scroll' %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <%= yield %>
   </body>
 </html>

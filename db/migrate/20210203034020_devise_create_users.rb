@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :full_name
       t.references :position , foreign_key: true
       t.references :level , foreign_key: true
-
+      t.references :department , foreign_key: true
       t.timestamps null: false
     end
 

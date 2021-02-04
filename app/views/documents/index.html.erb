@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <%= link_to 'เพิ่มเอกสาร' , new_document_path , class: 'btn btn-info'  %>
+    </div>
+    <br>
+    <table class="footable table table-stripped default footable-loaded">
+      <tr>
+        <th>#</th>
+        <th>เลขที่เอกสาร</th>
+        <th>เรื่อง</th>
+        <th>ถึง</th>
+        <th>ส่งเอกสารเมื่อวันที่</th>
+        <th>สร้างเอกสารเมื่อวันที่</th>
+      </tr>
+      <tbody>
+        <% @documents.each do |doc| %>
+        <tr>
+          <td>1</td>
+          <td><%= doc.number %></td>
+          <td><%= doc.title %></td>
+          <td>#</td>
+          <td>#</td>
+          <td><%= doc.created_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

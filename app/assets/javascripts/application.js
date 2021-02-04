@@ -12,7 +12,6 @@
 //
 //= require jquery3
 //= require jquery_ujs
-//= require rails-ujs
 //= require bootstrap-sprockets
 //= require bootstrap.min
 //= require activestorage
