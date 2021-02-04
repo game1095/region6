@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @documents = Document.all
+    @documents = Document.all.order(confidential_id: :DESC)
   end
 end
