@@ -7,8 +7,10 @@
       <%= link_to root_path , class: 'btn btn-success' do %>
       <i class="fa fa-home"> หน้าหลัก</i>
       <% end %>
-      <%= link_to new_document_path , class: 'btn btn-info' do %>
+      <% if can? :manage , @document  %>
+        <%= link_to new_document_path , class: 'btn btn-info' do %>
         <i class="fa fa-plus"> เพิ่มเอกสาร</i>
+        <% end %>
       <% end %>
     </div>
     <table class="footable table table-stripped default footable-loaded">
@@ -20,17 +22,36 @@
           <th>ถึง</th>
           <th>ส่งเอกสารเมื่อวันที่</th>
           <th>สร้างเอกสารเมื่อวันที่</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
+        <% n = 0 %>
         <% @documents.each do |doc| %>
         <tr>
-          <td>1</td>
+          <td><%= n+=1 %></td>
           <td><%= doc.number %></td>
           <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
           <td>#</td>
           <td>#</td>
           <td><%= doc.created_at.strftime('%d-%m-%Y') %></td>
+          <% if can? :manage , doc  %>
+          <td>
+            <div class="btn-group">
+              <%= link_to document_path(doc.id) , class: 'btn btn-info btn-sm' do %>
+              <i class="fa fa-eye"></i>
+              <% end %>
+
+              <%= link_to  edit_document_path(doc.id) , class: 'btn btn-success btn-sm' do %>
+              <i class="fa fa-edit" ></i>
+              <% end %>
+
+              <%= link_to document_path(doc.id) , method: :delete , data: {confirm: "คุณแน่ใจว่าจะลบเอกสารเรื่อง "+"#{doc.title}"+" (หากลบแล้วไม่สามารถกู้คืนได้)"} , class: 'btn btn-danger btn-sm' do %>
+              <i class="fa fa-trash-o"></i>
+              <% end %>
+            </div>
+          </td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
