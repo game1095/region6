@@ -18,6 +18,7 @@ gem 'jquery-rails', '~> 4.4'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.6'
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
+gem 'carrierwave', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
