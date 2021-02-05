@@ -32,21 +32,28 @@
 
         <!-- file details -->
         <div class="col-lg-4">
-          <h4>ไฟล์แนบ</h4>
-          <table class="table table-border">
+          <h2>ไฟล์แนบ</h2>
+          <table class="table">
             <thead>
               <tr>
                 <th>#</th>
-                <th>File Name</th>
-                <th>Date</th>
+                <th>ชื่อไฟล์</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
+              <% n = 0 %>
+              <% @document.attachments.each do |att|  %>
               <tr>
-                <td>1</td>
-                <td>test.file</td>
-                <td>ToDAY</td>
+                <td><%= n+=1 %> </td>
+                <td><%= att.identifier %> </td>
+                <td>
+                  <%= link_to att.url , class: 'btn btn-primary btn-xs' , target: :_blank do %>
+                    <i class="fa fa-cloud-download"></i>
+                  <% end %>
+                </td>
               </tr>
+              <% end %>
             </tbody>
           </table>
         </div>

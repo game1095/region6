@@ -3,7 +3,14 @@
     <h2 class="text-center">จัดการเอกสาร</h2>
   </div>
   <div class="panel-body">
-      <%= link_to 'เพิ่มเอกสาร' , new_document_path , class: 'btn btn-info'  %>
+    <div class="btn-group">
+      <%= link_to root_path , class: 'btn btn-success' do %>
+      <i class="fa fa-home"> หน้าหลัก</i>
+      <% end %>
+      <%= link_to new_document_path , class: 'btn btn-info' do %>
+        <i class="fa fa-plus"> เพิ่มเอกสาร</i>
+      <% end %>
+    </div>
     <table class="footable table table-stripped default footable-loaded">
       <thead>
         <tr>
