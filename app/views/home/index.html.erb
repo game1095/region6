@@ -25,7 +25,9 @@
                     <td><%= doc.number %></td>
                     <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
                     <td><%= doc.department.short %> </td>
-                    <td><%= doc.confidential.name %></td>
+                    <td>
+                      <span class="<%= doc.speed_color %>"><%= doc.confidential.name %></span>
+                    </td>
                     <td><%= doc.created_at.strftime('%d-%m-%Y') %></td>
                   </tr>
                 <% end %>
