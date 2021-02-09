@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :documents
   resources :managements , only: [:index]
+  resources :news_releases
 end
