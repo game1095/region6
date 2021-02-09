@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
     # User not signin they can all document
-    can :read, Document
+    can :read, [Document,NewsRelease]
 
     # User signed in checking
     if user.present?
@@ -14,7 +14,7 @@ class Ability
         can :manage , :all
       # 4 หัวหน้าที่ทำกาารไปรษณีย , 5 = พปณ
       elsif user.level_id == 4 || user.level_id == 5
-        can :read , Document
+        can :read , [Document,NewsRelease]
       end
     end
     # Define abilities for the passed in user here. For example:
