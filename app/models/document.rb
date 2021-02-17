@@ -5,9 +5,16 @@ class Document < ApplicationRecord
 
   mount_uploaders :attachments, AttachmentUploader
   serialize :attachments, JSON
+  
   def truncate_title
     if self.title != nil
       self.title.truncate(100 , omission: '... (คลิกเพื่ออ่านเพิ่มเติม)')
+    end
+  end
+
+  def truncate_details
+    if self.details != nil
+      self.details.truncate(250 , omission: '... (คลิกเพื่ออ่านเพิ่มเติม)')
     end
   end
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Region 6</title>
+    <title>สำนักงานไปรษณีย์เขต 6</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,36 +11,16 @@
     <%= stylesheet_link_tag    'animate', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "bootstrap", "data-turbolinks-track" => true  %>
+    <%= javascript_include_tag "bootstrap.min", "data-turbolinks-track" => true  %>
+    <%= favicon_link_tag asset_path('thp.png') %>
+    <%= stylesheet_link_tag 'style_2', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'bootstrap-dropdownhover.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "bootstrap-dropdownhover.min", "data-turbolinks-track" => true  %>
   </head>
 
-  <body class="landing-page container" id="page-top" >
-    <div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                  <ul class="nav navbar-nav navbar-left">
-                      <li><%= link_to 'หน้าหลัก' , root_path , class: 'page-scroll' %></li>
-                  </ul>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <% if user_signed_in? %>
-                          <li><%= link_to 'การจัดการ' , managements_path , class: 'page-scroll' %></li>
-                          <li class="page-scroll"><%= link_to "ผู้ใช้งาน : "+current_user.full_name , class:'page-scroll' %></li>
-                          <li class="page-scroll"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
-                        <% else %>
-                          <li><%= link_to 'เข้าสู่ระบบ' , new_user_session_path , class: 'page-scroll' %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <body class="landing-page animated fadeIn" id="page-top" >
+    <div class="container-fluid">
+      <%= yield %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <%= yield %>
   </body>
 </html>

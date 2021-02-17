@@ -1,5 +1,5 @@
 class NewsReleasesController < ApplicationController
-  before_action :authenticate_user! , only: [:create , :index , :edit , :destroy]
+  before_action :authenticate_user! , only: [:create , :edit , :destroy]
   load_and_authorize_resource
   def index
     @news = NewsRelease.all.order(created_at: :desc)
