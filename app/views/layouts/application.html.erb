@@ -20,6 +20,70 @@
 
   <body class="landing-page animated fadeIn" id="page-top" >
     <div class="container-fluid">
+      <!-- navbar -->
+      <nav class="navbar navbar-inverse navbar-default">
+        <div class="">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="data-hover">
+            <ul class="nav navbar-nav">
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-slack"></i> ส่วนต่าง ๆ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-folder-o"></i> งานสารบรรณ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-send-o"></i> รวมระบบงาน ปณท
+                <% end %>
+              </li>
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-database"></i> รวมระบบงาน ปข.6
+                <% end %>
+              </li>
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-book"></i> คู่มือการปฏิบัติงาน
+                <% end %>
+              </li>
+              <li>
+                <%= link_to documents_path do %>
+                  <i class="fa fa-money"></i> รายได้ - รายจ่าย
+                <% end %>
+              </li>
+
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to managements_path , class: 'page-scroll' do %>
+                    <i class="fa fa-list"></i> การจัดการ
+                  <% end %>
+                </li>
+                <li class="page-scroll">
+                  <%= link_to class:'page-scroll' do %>
+                    <i class="fa fa-user"></i><%= "ผู้ใช้งาน : "+current_user.full_name %>
+                  <% end %>
+                </li>
+                <li class="page-scroll">
+                  <%= link_to destroy_user_session_path , method: :delete do %>
+                    <i class="fa fa-sign-out"></i> ลงชื่อออก
+                  <% end %>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to new_user_session_path , class: 'page-scroll' do %>
+                    <i class="fa fa-sign-in"></i> เข้าสู่ระบบ
+                  <% end %>
+                </li>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
       <%= yield %>
     </div>
   </body>
