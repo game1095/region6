@@ -6,11 +6,11 @@ class DocumentDatatable < AjaxDatatablesRails::ActiveRecord
     @view_columns ||= {
       # id: { source: "User.id", cond: :eq },
       # name: { source: "User.name", cond: :like }
-      number: {source: 'Document.number'},
-      title: {source: "Document.title"},
-      department_name: {source: "Document.department_id"},
-      speed_color: {source: "Document.confidential_id"},
-      dated: {source: "Document.dated"}
+      number: {source: 'Document.number' , searchable: true , orderable: true},
+      title: {source: "Document.title" , searchable: true , orderable: true},
+      department_name: {source: "Document.department_id" , searchable: true , orderable: true},
+      speed_color: {source: "Document.confidential_id" , searchable: true , orderable: true},
+      dated: {source: "Document.dated" , searchable: true , orderable: true}
 
     }
   end

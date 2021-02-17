@@ -12,6 +12,11 @@ Rails.application.config.assets.precompile += %w( style.css )
 Rails.application.config.assets.precompile += %w( animate.css )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 
+Rails.application.config.assets.precompile += %w( style_2.css )
+Rails.application.config.assets.precompile += %w( bootstrap-dropdownhover.min.css )
+Rails.application.config.assets.precompile += %w( bootstrap-dropdownhover.min.js )
+Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

@@ -27,7 +27,7 @@
           <th>เรื่อง</th>
           <th>ถึง</th>
           <th>ส่งเอกสารเมื่อวันที่</th>
-          <th>สร้างเอกสารเมื่อวันที่</th>
+          <th>วันที่เอกสาร</th>
           <th></th>
         </tr>
       </thead>
@@ -40,7 +40,7 @@
           <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
           <td>#</td>
           <td>#</td>
-          <td><%= doc.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= doc.dated.strftime('%d-%m-%Y') %></td>
           <% if can? :manage , doc  %>
           <td>
             <div class="btn-group">
