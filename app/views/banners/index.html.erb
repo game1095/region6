@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+
+  <div class="panel-body">
+    <div class="btn-group">
+      <%= link_to root_path , class: 'btn btn-success' do %>
+        <i class="fa fa-home"> หน้าหลัก</i>
+      <% end %>
+
+      <%= link_to url_for(:back) , class: 'btn btn-danger' do %>
+        <i class="fa fa-arrow-left" > ย้อนกลับ</i>
+      <% end %>
+      <% if can? :manage , @new %>
+        <%= link_to new_banner_path , class: 'btn btn-info' do %>
+          <i class="fa fa-plus"> เพิ่ม Banner</i>
+        <% end %>
+      <% end %>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <% @banners.each do |banner| %>
+      <div class="col-lg-4">
+        <div class="ibox">
+          <div class="ibox-content product-box">
+            <div class="product-imitation">
+              <%= image_tag banner.attachments.url , height: '300', width: '500' %>
+            </div>
+            <div class="product-desc">
+              <div class="m-t text-righ">
+                <%= link_to banner_path(banner.id) , class: 'btn btn-sm btn-info' do %>
+                  รายละเอียด
+                  <i class="fa fa-long-arrow-right"></i>
+                <% end %>
+                <%= link_to  edit_news_release_path(banner.id) , class: 'btn btn-sm btn-success ' do %>
+                  แก้ไข
+                  <i class="fa fa-edit" ></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

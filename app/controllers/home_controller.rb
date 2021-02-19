@@ -6,6 +6,10 @@ class HomeController < ApplicationController
     @document_recent = Document.all.order(created_at: :desc).limit(10)
 
     @news_releases = NewsRelease.last
+
+    # Banner
+    @banners = Banner.limit(5).order(created_at: :desc)
+
     respond_to do |format|
       format.html
       format.json { render json: DocumentDatatable.new(params) }

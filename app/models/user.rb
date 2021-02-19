@@ -8,5 +8,5 @@ class User < ApplicationRecord
   belongs_to :department
   has_many :document
   has_many :NewsRelease
-
+  has_many :banner
 end

@@ -1,0 +1,16 @@
+<%= form_for @banner do |banner| %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= banner.label :อัพโหลดเอกสารไฟล์รูปภาพ , class:'label-control' %>
+      <%= banner.file_field :attachments , class: 'form-control' , multiple: true %>
+      <%= banner.hidden_field :attachments_cache %>
+    </div>
+  </div>
+</div>
+<br>
+<div class="form-group">
+    <%= banner.submit 'บันทึกผล' , class: 'btn btn-info btn-rounded btn-block' %>
+    <%= link_to 'ย้อนกลับ' ,  banners_path , class: 'btn btn-danger btn-rounded btn-block' %>
+</div>
+<% end %>

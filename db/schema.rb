@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_083707) do
+ActiveRecord::Schema.define(version: 2021_02_17_065839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "banners", force: :cascade do |t|
+    t.string "attachments"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_banners_on_user_id"
+  end
 
   create_table "confidentials", force: :cascade do |t|
     t.string "name"
@@ -86,6 +94,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_083707) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "banners", "users"
   add_foreign_key "documents", "confidentials"
   add_foreign_key "documents", "departments"
   add_foreign_key "documents", "users"
