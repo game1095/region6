@@ -22,7 +22,6 @@
     <br>
   </div>
 </header>
-
 <!-- News -->
 <div class="col-sm-8 col-md-8">
   <div class="title">
@@ -35,7 +34,7 @@
           <div class="subject">TRAVEL</div>
           <h3><%= @news_releases.title %></h3>
           <br>
-          <span class="post-date">โพตส์เมื่อ <%= @news_releases.created_at.strftime("%d %B %Y") %></span>
+          <span class="post-date">โพตส์เมื่อ <%= @news_releases.created_at.strftime("%d/%m/%Y") %></span>
           <p>
             <%=
             truncate(@news_releases.details,
@@ -54,7 +53,7 @@
         </div>
         <div class="col-sm-8 col-md-8 pad">
           <h4><%= link_to new.title , news_release_path(new.id) %></h4>
-          <span class="post-date">โพสต์เมื่อวันที่ <%= new.created_at.strftime("%d %B %Y") %></span>
+          <span class="post-date">โพสต์เมื่อวันที่ <%= new.created_at.strftime("%d/%m/%Y") %></span>
         </div>
       </div>
     <% end %>
@@ -80,12 +79,12 @@
       <tbody>
         <% @document_urgent.each do |doc_urg| %>
         <tr>
-          <td><%= doc_urg.title %></td>
+          <td><%= link_to doc_urg.truncate_home_title , document_path(doc_urg.id) %></td>
           <td><%= doc_urg.department.short %></td>
-          <td>
+          <td class="text-center">
             <span class="<%= doc_urg.speed_color %>"><%= doc_urg.confidential.name %></span>
           </td>
-          <td><%= doc_urg.dated %></td>
+          <td><%= doc_urg.dated.strftime("%d/%m/%Y") %></td>
         </tr>
         <% end %>
       </tbody>
@@ -190,12 +189,12 @@
       <tbody>
         <% @document_recent.each do |doc_rec| %>
         <tr>
-          <td><%= doc_rec.title %></td>
+          <td><%= link_to doc_rec.truncate_home_title , document_path(doc_rec.id) %></td>
           <td><%= doc_rec.department.short %></td>
-          <td>
+          <td class="text-center">
             <span class="<%= doc_rec.speed_color %>"><%= doc_rec.confidential.name %></span>
           </td>
-          <td><%= doc_rec.dated %></td>
+          <td><%= doc_rec.dated.strftime("%d/%m/%Y") %></td>
         </tr>
         <% end %>
       </tbody>

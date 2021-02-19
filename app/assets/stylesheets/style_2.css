@@ -35,18 +35,7 @@ body {
     margin: auto;
     width: 75%;
 }
-a {
-    color: #fff;
-    text-decoration: none;
-}
-a:hover {
-    color: #f4b838;
-    text-decoration: none;
-}
-a p:hover {
-    color: #f4b838;
-    text-decoration: none;
-}
+
 img {
     max-width: 100%;
 }
