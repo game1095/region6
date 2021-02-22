@@ -6502,7 +6502,7 @@ body.landing-page {
   transition: all 0.3s ease-in-out 0s;
 }
 .landing-page .navbar-default .nav li a {
-  color: #fff;
+  color: #000000;
   font-family: 'Open Sans', helvetica, arial, sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
@@ -6516,12 +6516,12 @@ body.landing-page {
 .landing-page .navbar-default .navbar-nav > .active > a,
 .landing-page .navbar-default .navbar-nav > .active > a:hover {
   background: transparent;
-  color: #fff;
+  color: #000000;
   border-top: 6px solid #1ab394;
 }
 .landing-page .navbar-default .navbar-nav > li > a:hover,
 .landing-page .navbar-default .navbar-nav > li > a:focus {
-  color: #1ab394;
+  color: #ffffff;
   background: inherit;
 }
 .landing-page .navbar-default .navbar-nav > .active > a:focus {

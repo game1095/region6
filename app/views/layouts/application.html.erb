@@ -11,7 +11,6 @@
     <%= stylesheet_link_tag    'animate', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "bootstrap", "data-turbolinks-track" => true  %>
-    <%= javascript_include_tag "bootstrap.min", "data-turbolinks-track" => true  %>
     <%= favicon_link_tag asset_path('thp.png') %>
     <%= stylesheet_link_tag 'style_2', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'bootstrap-dropdownhover.min', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -19,43 +18,105 @@
   </head>
 
   <body class="landing-page animated fadeIn" id="page-top" >
-    <div class="container-fluid">
+    <div class="">
       <!-- navbar -->
-      <nav class="navbar navbar-inverse navbar-default">
+      <nav class="navbar navbar navbar-default">
         <div class="">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="data-hover">
             <ul class="nav navbar-nav">
               <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-slack"></i> ส่วนต่าง ๆ
+                <%= link_to root_path do %>
+                  <i class="fa fa-home"></i> หน้าหลัก
                 <% end %>
               </li>
-              <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-folder-o"></i> งานสารบรรณ
-                <% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-slack"></i> ส่วนต่าง ๆ<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-users"> ส่วนอำนวยการและบุคคล</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-dollar"> ส่วนการเงินและบัญชี</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-desktop"> ส่วนเทคโนลยีสารสนเทศ</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-cubes"> ส่วนทรัพย์สินและพัสดุ</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-shopping-cart"> ส่วนบริหารงาน e-Commerce</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-envelope"> ส่วนระบบงานนำจ่าย</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-truck"> ส่วนรับฝากและส่งต่อ</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-check"> ส่วนควบคุมคุณภาพ</i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-globe"> ส่วนตลาดและลูกค้าธุรกิจ</i>
+                    <% end %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                </ul>
               </li>
-              <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-send-o"></i> รวมระบบงาน ปณท
-                <% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-database"></i> ระบบงาน ปข.6<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to documents_path do %>
+                      <i class="fa fa-folder"></i> งานสารบรรณ
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fa fa-user"></i> ระบบบริหารข้อมูลบุคคล
+                    <% end %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <%= link_to documents_path do %>
+                      <i class="fa fa-book"></i> คู่มือการปฏิบัติงาน
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to documents_path do %>
+                      <i class="fa fa-money"></i> รายได้-รายจ่าย
+                    <% end %>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-database"></i> รวมระบบงาน ปข.6
-                <% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-send"></i> ระบบงาน ปณท<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to documents_path do %>
+                      <i class="fa fa-folder"></i> งานสารบรรณ
+                    <% end %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                </ul>
               </li>
-              <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-book"></i> คู่มือการปฏิบัติงาน
-                <% end %>
-              </li>
-              <li>
-                <%= link_to documents_path do %>
-                  <i class="fa fa-money"></i> รายได้ - รายจ่าย
-                <% end %>
-              </li>
-
               <% if user_signed_in? %>
                 <li>
                   <%= link_to managements_path , class: 'page-scroll' do %>
@@ -79,7 +140,6 @@
                   <% end %>
                 </li>
               <% end %>
-
             </ul>
           </div>
         </div>
