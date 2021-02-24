@@ -1,9 +1,10 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user! , only: [:create , :edit , :destroy]
   load_and_authorize_resource
+
   def index
     if user_signed_in?
-      @documents = Document.where(department_id: current_user.department_id)
+      @documents = Document.where(department_id: current_user.department_id).order(created_at: :desc)
     else
       @documents = Document.all.order(dated: :desc)
     end

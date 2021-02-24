@@ -1,28 +1,40 @@
-<h2 class="text-center">รายละเอียดเอกสาร</h2>
+<h1 class="text-center"><i class="fa fa-eye"></i> รายละเอียดเอกสาร</h1>
 <div class="col-lg-12">
   <div class="ibox product-detail">
     <div class="ibox-content">
       <div class="row">
         <!-- Document Info -->
         <div class="col-lg-8">
-          <h2 class="font-bold m-b-xs">เรื่อง : <%= @document.title %></h2>
+          <h2 class="font-bold m-b-xs"><i class="fa fa-dot-circle-o"></i> เรื่อง : <%= @document.title %></h2>
           <hr>
-          <h4>รายละเอียดเอกสาร</h4>
+          <h4><i class="fa fa-bullhorn"></i> รายละเอียดเอกสาร</h4>
           <div class="small">
             <%= @document.details %>
           </div>
           <div class="small m-t-md">
-            <dt>เลขที่เอกสาร</dt>
-            <dd><%= @document.number %></dd>
+            <div class="row">
+              <div class="col-lg-6">
+                <dt><i class="fa fa-slack"></i> เลขที่เอกสาร</dt>
+                <dd><%= @document.number %></dd>
+                <br>
 
-            <dt>ความเร็ว</dt>
-            <dd><%= @document.confidential.name %></dd>
+                <dt><i class="fa fa-flag"></i> เอกสารของส่วน</dt>
+                <dd><%= @document.department.name %></dd>
+                <br>
 
-            <dt>ผู้สร้างเอกสาร</dt>
-            <dd><%= @document.user.full_name %></dd>
+                <dt><i class="fa fa-rocket"></i> ชั้นความเร็ว</dt>
+                <dd><span class="<%= @document.speed_color %>"><%= @document.confidential.name %></span></dd>
+                <br>
+              </div>
+              <div class="col-lg-6">
+                <dt><i class="fa fa-user"></i> ผู้สร้างเอกสาร</dt>
+                <dd><%= @document.user.full_name %></dd>
+                <br>
 
-            <dt>หมายเหตุ</dt>
-            <dd><%= @document.remark %></dd>
+                <dt><i class="fa fa-terminal"></i> หมายเหตุ</dt>
+                <dd><%= @document.remark %></dd>
+              </div>
+            </div>
           </div>
           <hr>
           <div class="btn-group">
@@ -32,7 +44,7 @@
 
         <!-- file details -->
         <div class="col-lg-4">
-          <h2>ไฟล์แนบ</h2>
+          <h2><i class="fa fa-paperclip"></i> ไฟล์แนบ</h2>
           <table class="table">
             <thead>
               <tr>

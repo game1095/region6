@@ -20,8 +20,8 @@ gem 'devise'
 gem 'rails_admin', '~> 2.0'
 gem 'carrierwave', '~> 2.0'
 gem 'cancancan'
-gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
