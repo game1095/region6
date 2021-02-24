@@ -1,6 +1,10 @@
 <div class="panel panel-default">
   <div class="panel-header">
-    <h2 class="text-center">จัดการเอกสาร</h2>
+    <% if user_signed_in? %>
+      <h2 class="text-center">จัดการเอกสาร</h2>
+    <% else %>
+      <h2 class="text-center">ระบบงานสารบรรณ</h2>
+    <% end %>
   </div>
   <div class="panel-body">
     <div class="btn-group">
@@ -25,8 +29,11 @@
           <th>#</th>
           <th>เลขที่เอกสาร</th>
           <th>เรื่อง</th>
+          <th>ส่วน</th>
+          <th>ชั้นความเร็ว</th>
           <th>ถึง</th>
           <th>ส่งเอกสารเมื่อวันที่</th>
+          <th>ดาวน์โหลด</th>
           <th>วันที่เอกสาร</th>
           <th></th>
         </tr>
@@ -38,22 +45,31 @@
           <td><%= n+=1 %></td>
           <td><%= doc.number %></td>
           <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
+          <td><%= doc.department.short %></td>
+          <td><span class="<%= doc.speed_color %>"><%= doc.confidential.name %></span></td>
           <td>#</td>
           <td>#</td>
+          <td>
+            <% doc.attachments.each do |att| %>
+              <%= link_to att.url , class: 'btn btn-success' , target: :_blank  do %>
+                <i class="fa fa-cloud-download"></i>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= doc.dated.strftime('%d-%m-%Y') %></td>
           <% if can? :manage , doc  %>
           <td>
             <div class="btn-group">
               <%= link_to document_path(doc.id) , class: 'btn btn-info btn-sm' do %>
-              <i class="fa fa-eye"></i>
+                <i class="fa fa-eye"></i>
               <% end %>
 
               <%= link_to  edit_document_path(doc.id) , class: 'btn btn-success btn-sm' do %>
-              <i class="fa fa-edit" ></i>
+                <i class="fa fa-edit" ></i>
               <% end %>
 
               <%= link_to document_path(doc.id) , method: :delete , data: {confirm: "คุณแน่ใจว่าจะลบเอกสารเรื่อง "+"#{doc.title}"+" (หากลบแล้วไม่สามารถกู้คืนได้)"} , class: 'btn btn-danger btn-sm' do %>
-              <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash-o"></i>
               <% end %>
             </div>
           </td>

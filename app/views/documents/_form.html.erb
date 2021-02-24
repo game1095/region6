@@ -1,30 +1,30 @@
-<%= form_for @document do |doc| %>
+<%= form_for @document , { multipart: true } do |doc| %>
 <div class="row">
   <div class="col-lg-6">
     <div class="form-group">
-      <%= doc.label :เลขที่เอกสาร , class: 'label-control'%>
+      <i class="fa fa-slack"></i> <%= doc.label :เลขที่เอกสาร , class: 'label-control'%>
       <%= doc.text_field :number , class:'form-control' , value: "ปณท ปข.6("+current_user.department.short+")/-" %>
     </div>
     <div class="form-group">
-      <%= doc.label :หัวข้อ , class: 'label-control'%>
+      <i class="fa fa-dot-circle-o"></i> <%= doc.label :หัวข้อ , class: 'label-control'%>
       <%= doc.text_field :title , class:'form-control' %>
     </div>
     <div class="form-group">
-      <%= doc.label :ส่วน , class:'label-control' %>
+      <i class="fa fa-flag"></i> <%= doc.label :ส่วน , class:'label-control' %>
       <%= doc.collection_select :department_id , Department.all , :id , :name , {prompt: 'โปรดระบุส่วน'} , class: 'form-control' %>
     </div>
   </div>
   <div class="col-lg-6">
     <div class="form-group">
-      <%= doc.label :วันที่เอกสาร , class: 'label-control'%>
+      <i class="fa fa-calendar-o"></i> <%= doc.label :วันที่เอกสาร , class: 'label-control'%>
       <%= doc.date_field :dated , class:'form-control' , value: Time.now.strftime('%Y-%m-%d') %>
     </div>
     <div class="form-group">
-      <%= doc.label :ความเร็ว , class:'label-control' %>
+      <i class="fa fa-rocket"></i> <%= doc.label :ความเร็ว , class:'label-control' %>
       <%= doc.collection_select :confidential_id , Confidential.all , :id , :name , {selected: Confidential.first.name}  , class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= doc.label :อัพโหลดเอกสารไฟล์_PDF , class:'label-control' %>
+      <i class="fa fa-paperclip"></i> <%= doc.label :อัพโหลดเอกสารไฟล์_PDF , class:'label-control' %>
       <%= doc.file_field :attachments , class: 'form-control' , multiple: true %>
     </div>
   </div>
@@ -32,18 +32,20 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="form-group">
-      <%= doc.label :รายละเอียด , class: 'label-control'%>
+      <i class="fa fa-bullhorn"></i> <%= doc.label :รายละเอียด , class: 'label-control'%>
       <%= doc.text_area :details , class:'form-control' , rows: 5 %>
     </div>
   </div>
   <div class="col-lg-12">
-    <%= doc.label :หมายเหตุ , class: 'label-control'%>
+    <i class="fa fa-terminal"></i> <%= doc.label :หมายเหตุ , class: 'label-control'%>
     <%= doc.text_area :remark , class:'form-control' , rows: 5 %>
   </div>
 </div>
 <br>
 <div class="form-group">
-    <%= doc.submit 'บันทึกผล' , class: 'btn btn-info btn-rounded btn-block' %>
+    <%= button_tag  type: 'submit' , class: 'btn btn-info btn-rounded btn-block' do %>
+      บันทึกผล <i class="fa fa-save"></i>
+    <% end %>
     <%= link_to 'ย้อนกลับ' ,  documents_path , class: 'btn btn-danger btn-rounded btn-block' %>
 </div>
 <% end %>

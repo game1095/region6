@@ -37,4 +37,5 @@ class Document < ApplicationRecord
       end
     end
   end
+
 end
