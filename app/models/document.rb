@@ -5,6 +5,15 @@ class Document < ApplicationRecord
 
   mount_uploaders :attachments, AttachmentUploader
   serialize :attachments, JSON
+  self.per_page = 10
+
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 
   def truncate_title
     if self.title != nil
