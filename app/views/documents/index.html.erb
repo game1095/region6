@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-header">
     <% if user_signed_in? %>
-      <h2 class="text-center">จัดการเอกสาร</h2>
+      <h2 class="text-center"><i class="fa fa-file-o"></i> จัดการเอกสาร</h2>
     <% else %>
-      <h2 class="text-center">ระบบงานสารบรรณ</h2>
+      <h2 class="text-center"><i class="fa fa-file-o"></i> ระบบงานสารบรรณ</h2>
     <% end %>
   </div>
   <div class="panel-body">
@@ -23,18 +23,35 @@
       <% end %>
 
     </div>
+    <hr>
+    <%= form_tag documents_path, method: :get, id: 'documents_search' do %>
+      <div class="row">
+        <div class="col-lg-8">
+          <%= text_field_tag :search, params[:search] , placeholder: 'ค้นหาจากชื่อหนังสือ' , class: 'form-control' %>
+        </div>
+        <div class="col-lg-4">
+          <%= button_tag type: 'submit' , name: nil , class: 'btn btn-info' do  %>
+            <i class="fa fa-search"> ค้นหา</i>
+          <% end %>
+          <%= link_to documents_path , class: 'btn btn-success' do %>
+            <i class="fa fa-eye"> แสดงเอกสารทั้งหมด</i>
+          <% end%>
+        </div>
+      </div>
+    <% end %>
+    <hr>
     <table class="footable table table-stripped default footable-loaded">
       <thead>
         <tr>
-          <th>#</th>
-          <th>เลขที่เอกสาร</th>
-          <th>เรื่อง</th>
-          <th>ส่วน</th>
-          <th>ชั้นความเร็ว</th>
-          <th>ถึง</th>
-          <th>ส่งเอกสารเมื่อวันที่</th>
-          <th>ดาวน์โหลด</th>
-          <th>วันที่เอกสาร</th>
+          <th><i class=""></i> #</th>
+          <th><i class="fa fa-slack"></i> เลขที่เอกสาร</th>
+          <th><i class="fa fa-dot-circle-o"></i> เรื่อง</th>
+          <th><i class="fa fa-flag"></i> ส่วน</th>
+          <th><i class="fa fa-rocket"></i> ชั้นความเร็ว</th>
+          <th><i class="fa fa-tag"></i> ถึง</th>
+          <th><i class="fa fa-calendar"></i> ส่งเอกสารเมื่อวันที่</th>
+          <th><i class="fa fa-cloud-download"></i> ดาวน์โหลด</th>
+          <th><i class="fa fa-calendar"></i> วันที่เอกสาร</th>
           <th></th>
         </tr>
       </thead>
@@ -78,5 +95,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @documents , renderer: BootstrapPagination::Rails %>
   </div>
 </div>
