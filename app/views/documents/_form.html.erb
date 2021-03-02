@@ -32,20 +32,31 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="form-group">
+        <i class="fa fa-send-o"></i> <%= doc.label :เลือกปลายทาง_กด_ctrl_เพื่อเลือกหลายปลายทาง , class:'label-control' %>
+        <%= doc.collection_select :destination_ids, Destination.all  ,:id , :name,{include_blank: false},{ multiple: true, size: 5 , class:'form-control' } %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
       <i class="fa fa-bullhorn"></i> <%= doc.label :รายละเอียด , class: 'label-control'%>
       <%= doc.text_area :details , class:'form-control' , rows: 5 %>
     </div>
   </div>
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     <i class="fa fa-terminal"></i> <%= doc.label :หมายเหตุ , class: 'label-control'%>
     <%= doc.text_area :remark , class:'form-control' , rows: 5 %>
   </div>
 </div>
 <br>
+<div class="">
+    <%= doc.hidden_field :send_date , value: Time.now.strftime('%Y-%m-%d') %>
+</div>
 <div class="form-group">
-    <%= button_tag  type: 'submit' , class: 'btn btn-info btn-rounded btn-block' do %>
-      บันทึกผล <i class="fa fa-save"></i>
-    <% end %>
-    <%= link_to 'ย้อนกลับ' ,  documents_path , class: 'btn btn-danger btn-rounded btn-block' %>
+  <%= button_tag  type: 'submit' , class: 'btn btn-info btn-rounded btn-block' do %>
+    บันทึกผล <i class="fa fa-save"></i>
+  <% end %>
+  <%= link_to 'ย้อนกลับ' ,  documents_path , class: 'btn btn-danger btn-rounded btn-block' %>
 </div>
 <% end %>

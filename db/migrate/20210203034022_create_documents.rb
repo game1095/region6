@@ -6,6 +6,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :details
       t.text :remark
+      t.date :send_date
 
       t.references :confidential , foreign_key: true
       t.references :user , foreign_key: true

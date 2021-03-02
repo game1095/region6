@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_065839) do
+ActiveRecord::Schema.define(version: 2021_03_01_021906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,27 @@ ActiveRecord::Schema.define(version: 2021_02_17_065839) do
     t.string "short"
   end
 
+  create_table "destinations", force: :cascade do |t|
+    t.string "name"
+    t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destinations_documents", id: false, force: :cascade do |t|
+    t.bigint "document_id", null: false
+    t.bigint "destination_id", null: false
+    t.index ["destination_id"], name: "index_destinations_documents_on_destination_id"
+    t.index ["document_id"], name: "index_destinations_documents_on_document_id"
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "number"
     t.date "dated"
     t.string "title"
     t.string "details"
     t.text "remark"
+    t.date "send_date"
     t.bigint "confidential_id"
     t.bigint "user_id"
     t.bigint "department_id"
