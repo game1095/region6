@@ -1,77 +1,110 @@
 <h1 class="text-center"><i class="fa fa-eye"></i> รายละเอียดเอกสาร</h1>
 <div class="col-lg-12">
-  <div class="ibox product-detail">
-    <div class="ibox-content">
-      <div class="row">
-        <!-- Document Info -->
-        <div class="col-lg-8">
-          <h2 class="font-bold m-b-xs"><i class="fa fa-dot-circle-o"></i> เรื่อง : <%= @document.title %></h2>
-          <hr>
-          <h4><i class="fa fa-bullhorn"></i> รายละเอียดเอกสาร</h4>
-          <div class="small">
-            <%= @document.details %>
-          </div>
-          <div class="small m-t-md">
-            <div class="row">
-              <div class="col-lg-6">
-                <dt><i class="fa fa-slack"></i> เลขที่เอกสาร</dt>
-                <dd><%= @document.number %></dd>
-                <br>
-
-                <dt><i class="fa fa-flag"></i> เอกสารของส่วน</dt>
-                <dd><%= @document.department.name %></dd>
-                <br>
-
-                <dt><i class="fa fa-rocket"></i> ชั้นความเร็ว</dt>
-                <dd><span class="<%= @document.speed_color %>"><%= @document.confidential.name %></span></dd>
-                <br>
-              </div>
-              <div class="col-lg-6">
-                <dt><i class="fa fa-user"></i> ผู้สร้างเอกสาร</dt>
-                <dd><%= @document.user.full_name %></dd>
-                <br>
-
-                <dt><i class="fa fa-terminal"></i> หมายเหตุ</dt>
-                <dd><%= @document.remark %></dd>
-              </div>
-            </div>
-          </div>
-          <hr>
+  <div class="ibox-content">
+    <div class="row">
+      <!-- Document Info -->
+      <div class="col-lg-8">
+        <h2 class="font-bold m-b-xs">
+          <i class="fa fa-dot-circle-o"></i> เรือง : <%= @document.title %>
           <div class="btn-group">
             <%= link_to 'ย้อนกลับ', url_for(:back) , class: 'btn btn-danger' %>
           </div>
+        </h2>
+        <hr>
+        <h4><i class="fa fa-bullhorn"></i> รายละเอียดเอกสาร</h4>
+        <div class="small">
+          <%= @document.details %>
         </div>
+        <div class="small m-t-md">
+          <div class="row">
+            <div class="col-lg-6">
+              <dt><i class="fa fa-slack"></i> เลขที่เอกสาร</dt>
+              <dd><%= @document.number %></dd>
+              <br>
 
-        <!-- file details -->
-        <div class="col-lg-4">
-          <h2><i class="fa fa-paperclip"></i> ไฟล์แนบ</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>ชื่อไฟล์</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% n = 0 %>
-              <% @document.attachments.each do |att|  %>
-              <tr>
-                <td><%= n+=1 %> </td>
-                <td><%= att.identifier %> </td>
-                <td>
-                  <%= link_to att.url , class: 'btn btn-primary btn-xs' , target: :_blank do %>
-                    <i class="fa fa-cloud-download"></i>
-                  <% end %>
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
+              <dt><i class="fa fa-flag"></i> เอกสารของส่วน</dt>
+              <dd><%= @document.department.name %></dd>
+              <br>
+
+              <dt><i class="fa fa-rocket"></i> ชั้นความเร็ว</dt>
+              <dd><span class="<%= @document.speed_color %>"><%= @document.confidential.name %></span></dd>
+              <br>
+
+              <dt><i class="fa fa-send"></i> จำนวนหน่วยงานปลายทางที่ส่งถึง</dt>
+              <dd><%= @document.destinations.count %> แห่ง</dd>
+            </div>
+            <div class="col-lg-6">
+              <dt><i class="fa fa-user"></i> ผู้สร้างเอกสาร</dt>
+              <dd><%= @document.user.full_name %></dd>
+              <br>
+
+              <dt><i class="fa fa-terminal"></i> หมายเหตุ</dt>
+              <dd><%= @document.remark %></dd>
+            </div>
+          </div>
         </div>
+        <hr>
+      </div>
+
+      <!-- file details -->
+      <div class="col-lg-4">
+        <h2 class="text-center"><i class="fa fa-paperclip"></i> ไฟล์แนบ</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th><i class="fa fa-slack"></i></th>
+              <th><i class="fa fa-file-o"></i> ชื่อไฟล์</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% n = 0 %>
+            <% @document.attachments.each do |att|  %>
+            <tr>
+              <td><%= n+=1 %> </td>
+              <td><%= att.identifier %> </td>
+              <td>
+                <%= link_to att.url , class: 'btn btn-success btn-sm' , target: :_blank do %>
+                  <i class="fa fa-cloud-download"></i>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <hr>
       </div>
     </div>
   </div>
-  <hr>
 </div>
-<!-- sented details -->
+
+<!-- send document -->
+<div class="col-lg-12">
+  <h2 class="text-center"><i class="fa fa-envelope-o"></i> การจัดส่งเอกสาร</h2>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th><i class="fa fa-slack"></i></th>
+        <th><i class="fa fa-send-o"></i> หน่วยงานปลายทาง</th>
+        <th><i class="fa fa-number"></i> รหัสไปรษณีย์ปลายทาง</th>
+        <th><i class="fa fa-calendar"></i> วันที่ส่งเอกสาร</th>
+        <th><i class="fa fa-signal"> สถานะ</i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% n = 0 %>
+      <% @document.destinations.each do |des| %>
+      <tr>
+        <td><%= n+=1 %></td>
+        <td><%= des.name %></td>
+        <td><%= des.postcode %></td>
+        <td><%= @document.send_date.strftime("%d-%m-%Y") %></td>
+        <td></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="btn-group">
+    <%= link_to 'ย้อนกลับ', url_for(:back) , class: 'btn btn-danger' %>
+  </div>
+</div>
