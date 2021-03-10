@@ -48,9 +48,7 @@
           <th><i class="fa fa-dot-circle-o"></i> เรื่อง</th>
           <th><i class="fa fa-flag"></i> ส่วน</th>
           <th><i class="fa fa-rocket"></i> ชั้นความเร็ว</th>
-          <th><i class="fa fa-tag"></i> ถึง</th>
           <th><i class="fa fa-calendar"></i> ส่งเอกสารเมื่อวันที่</th>
-          <th><i class="fa fa-cloud-download"></i> ดาวน์โหลด</th>
           <th><i class="fa fa-calendar"></i> วันที่เอกสาร</th>
           <th></th>
         </tr>
@@ -64,15 +62,7 @@
           <td><%= link_to doc.truncate_title , document_path(doc.id) %></td>
           <td><%= doc.department.short %></td>
           <td><span class="<%= doc.speed_color %>"><%= doc.confidential.name %></span></td>
-          <td>#</td>
-          <td>#</td>
-          <td>
-            <% doc.attachments.each do |att| %>
-              <%= link_to att.url , class: 'btn btn-success' , target: :_blank  do %>
-                <i class="fa fa-cloud-download"></i>
-              <% end %>
-            <% end %>
-          </td>
+          <td><%= doc.document_destination.first.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= doc.dated.strftime('%d-%m-%Y') %></td>
           <% if can? :manage , doc  %>
           <td>

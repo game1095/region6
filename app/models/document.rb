@@ -2,7 +2,8 @@ class Document < ApplicationRecord
   belongs_to :confidential
   belongs_to :user
   belongs_to :department
-  has_and_belongs_to_many :destinations
+  has_many :document_destination
+  has_many :destinations , through: :document_destination
   mount_uploaders :attachments, AttachmentUploader
   serialize :attachments, JSON
   self.per_page = 10
