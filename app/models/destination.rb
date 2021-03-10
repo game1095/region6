@@ -1,3 +1,4 @@
 class Destination < ApplicationRecord
-  has_and_belongs_to_many :documents
+  has_many :document_destination
+  has_many :documents , through: :document_destination
 end

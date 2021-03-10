@@ -1,14 +1,21 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user! , only: [:create , :edit , :destroy]
   load_and_authorize_resource
-  helper_method :sort_column, :sort_direction
 
   def index
+    
     if user_signed_in?
-      @documents = Document.search(params[:search]).where(department_id: current_user.department_id).order(confidential_id: :desc).paginate(page: params[:page])
+      if current_user.level_id == 1
+        @documents = Document.all.search(params[:search]).order(confidential_id: :desc).paginate(page: params[:page])
+      elsif current_user.level_id == 2 || current_user.level_id == 3
+        @document = Document.search(params[:search]).where(department_id: current_user.department_id).order(confidential_id: :desc).paginate(page: params[:page])
+      elsif current_user.level_id == 4 || current_user.level == 5
+        @documents = Document.joins(:destinations).search(params[:search]).where(document_destinations: {destination_id: current_user.postoffice.id}).order(confidential_id: :desc).paginate(page: params[:page])
+      end
     else
       @documents = Document.all.search(params[:search]).order(confidential_id: :desc).paginate(page: params[:page])
     end
+
   end
 
   def new

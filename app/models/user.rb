@@ -6,6 +6,7 @@ class User < ApplicationRecord
   belongs_to :level
   belongs_to :position
   belongs_to :department
+  belongs_to :postoffice
   has_many :document
   has_many :NewsRelease
   has_many :banner

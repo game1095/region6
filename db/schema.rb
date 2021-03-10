@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_021906) do
+ActiveRecord::Schema.define(version: 2021_03_02_064324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(version: 2021_03_01_021906) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "destinations_documents", id: false, force: :cascade do |t|
-    t.bigint "document_id", null: false
-    t.bigint "destination_id", null: false
-    t.index ["destination_id"], name: "index_destinations_documents_on_destination_id"
-    t.index ["document_id"], name: "index_destinations_documents_on_document_id"
+  create_table "document_destinations", force: :cascade do |t|
+    t.integer "document_id"
+    t.integer "destination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "documents", force: :cascade do |t|
@@ -90,6 +90,13 @@ ActiveRecord::Schema.define(version: 2021_03_01_021906) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "postoffices", force: :cascade do |t|
+    t.string "name"
+    t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -102,10 +109,12 @@ ActiveRecord::Schema.define(version: 2021_03_01_021906) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "postoffice_id"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["level_id"], name: "index_users_on_level_id"
     t.index ["position_id"], name: "index_users_on_position_id"
+    t.index ["postoffice_id"], name: "index_users_on_postoffice_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -117,4 +126,5 @@ ActiveRecord::Schema.define(version: 2021_03_01_021906) do
   add_foreign_key "users", "departments"
   add_foreign_key "users", "levels"
   add_foreign_key "users", "positions"
+  add_foreign_key "users", "postoffices"
 end
