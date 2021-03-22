@@ -118,11 +118,13 @@
                 </ul>
               </li>
               <% if user_signed_in? %>
-                <li>
-                  <%= link_to managements_path , class: 'page-scroll' do %>
-                    <i class="fa fa-list"></i> การจัดการ
-                  <% end %>
-                </li>
+                <% if current_user.level_id == 1 || current_user.level_id == 2 || current_user.level_id == 3  %>
+                  <li>
+                    <%= link_to managements_path , class: 'page-scroll' do %>
+                      <i class="fa fa-list"></i> การจัดการ
+                    <% end %>
+                  </li>
+                <% end %>
                 <li class="page-scroll">
                   <%= link_to class:'page-scroll' do %>
                     <i class="fa fa-user"></i><%= "ผู้ใช้งาน : "+current_user.full_name %>

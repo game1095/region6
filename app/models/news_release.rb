@@ -1,5 +1,6 @@
 class NewsRelease < ApplicationRecord
   belongs_to :user
+  belongs_to :tag
 
   mount_uploaders :attachments, AttachmentUploader
   serialize :attachments, JSON

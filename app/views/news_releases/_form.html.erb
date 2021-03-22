@@ -8,12 +8,18 @@
   </div>
   <div class="col-lg-6">
     <div class="form-group">
-      <%= news.label :อัพโหลดเอกสารไฟล์รูปภาพ , class:'label-control' %>
-      <%= news.file_field :attachments , class: 'form-control' , multiple: true %>
+      <i class="fa fa-flag"></i> <%= news.label :tag , class:'label-control' %>
+      <%= news.collection_select :tag_id , Tag.all , :id , :name , {prompt: 'โปรดระบุ Tag'} , class: 'form-control' %>
     </div>
   </div>
 </div>
 <div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <%= news.label :อัพโหลดเอกสารไฟล์รูปภาพ , class:'label-control' %>
+      <%= news.file_field :attachments , class: 'form-control' , multiple: true %>
+    </div>
+  </div>
   <div class="col-lg-12">
     <div class="form-group">
       <%= news.label :รายละเอียด , class: 'label-control'%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_064324) do
+ActiveRecord::Schema.define(version: 2021_03_11_023423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_064324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "attachments"
+    t.bigint "tag_id"
+    t.index ["tag_id"], name: "index_news_releases_on_tag_id"
     t.index ["user_id"], name: "index_news_releases_on_user_id"
   end
 
@@ -93,6 +95,12 @@ ActiveRecord::Schema.define(version: 2021_03_02_064324) do
   create_table "postoffices", force: :cascade do |t|
     t.string "name"
     t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -122,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_064324) do
   add_foreign_key "documents", "confidentials"
   add_foreign_key "documents", "departments"
   add_foreign_key "documents", "users"
+  add_foreign_key "news_releases", "tags"
   add_foreign_key "news_releases", "users"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "levels"
