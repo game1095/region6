@@ -31,7 +31,7 @@
     <div class="blog-content">
         <div class="blog-text">
           <img src="<%= @news_releases.attachments.first.url %>" height="500" width="650">
-          <div class="subject">TRAVEL</div>
+          <div class="subject"><%= @news_releases.tag.name %></div>
           <h3><%= @news_releases.title %></h3>
           <br>
           <span class="post-date">โพตส์เมื่อ <%= @news_releases.created_at.strftime("%d/%m/%Y") %></span>

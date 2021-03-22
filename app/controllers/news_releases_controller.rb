@@ -1,6 +1,6 @@
 class NewsReleasesController < ApplicationController
   before_action :authenticate_user! , only: [:create , :edit , :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource param_method: :news_params
   def index
     @news = NewsRelease.all.order(created_at: :desc)
   end
@@ -42,6 +42,6 @@ class NewsReleasesController < ApplicationController
   end
   private
     def news_params
-      params.require(:news_release).permit(:title , :details , :title , {attachments: []})
+      params.require(:news_release).permit(:title , :details , :title , :tag_id , {attachments: []})
     end
 end

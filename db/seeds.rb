@@ -347,3 +347,7 @@ Postoffice.create(id: 127 , name: 'ส่วนระบบงานนำจ่
 Postoffice.create(id: 128 , name: 'ส่วนรับฝากและส่งต่อ' , postcode: '60000')
 Postoffice.create(id: 129 , name: 'ส่วนตลาดและลูกค้าธุรกิจ' , postcode: '60000')
 Postoffice.create(id: 130 , name: 'ส่วนควบคุมคุณภาพ' , postcode: '60000')
+
+# tag
+Tag.create(id: 1 , name: 'ข่าว')
+Tag.create(id: 2 , name: 'กิจกรรม')
